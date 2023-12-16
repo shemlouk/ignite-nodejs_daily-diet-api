@@ -12,4 +12,13 @@ export class InMemoryMealsRepository implements MealsRepository {
   async findById(mealId: string) {
     return this.#meals.find((meal) => meal.id === mealId);
   }
+
+  async update(meal: Meal) {
+    const index = this.#meals.findIndex((m) => m.id === meal.id);
+    if (index > -1) {
+      this.#meals.splice(index, 1);
+      this.#meals.push(meal);
+      return meal;
+    }
+  }
 }
