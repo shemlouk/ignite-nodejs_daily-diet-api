@@ -17,8 +17,6 @@ describe("List Meals Use Case", () => {
     inMemoryUsersRepository = new InMemoryUsersRepository();
     inMemoryMealsRepository = new InMemoryMealsRepository();
     sut = new ListMeals(inMemoryMealsRepository, inMemoryUsersRepository);
-
-    vi.useFakeTimers();
   });
 
   it("should list the meals of an user", async () => {
