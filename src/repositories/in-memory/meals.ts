@@ -21,4 +21,9 @@ export class InMemoryMealsRepository implements MealsRepository {
       return meal;
     }
   }
+
+  async deleteById(mealId: string) {
+    const index = this.#meals.findIndex((meal) => meal.id === mealId);
+    if (index > -1) this.#meals.splice(index, 1);
+  }
 }
