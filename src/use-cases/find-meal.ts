@@ -1,5 +1,11 @@
 import { MealsRepository } from "@/repositories/meals";
 import { NotFoundError } from "./errors/not-found";
+import { UnauthorizedError } from "./errors/unauthorized";
+
+type FindMealInput = {
+  userId: string;
+  mealId: string;
+};
 
 type FindMealOutput = {
   meal: {
@@ -14,9 +20,11 @@ type FindMealOutput = {
 export class FindMeal {
   constructor(private mealsRepository: MealsRepository) {}
 
-  async execute(mealId: string): Promise<FindMealOutput> {
+  async execute({ userId, mealId }: FindMealInput): Promise<FindMealOutput> {
     const meal = await this.mealsRepository.findById(mealId);
+
     if (!meal) throw new NotFoundError("Meal");
+    if (meal.userId !== userId) throw new UnauthorizedError();
 
     return { meal: meal.toObject() };
   }
