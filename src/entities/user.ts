@@ -8,35 +8,39 @@ interface UserProps {
 }
 
 export class User extends Entity {
-  #hashedPassword: Hash;
-
-  private _name: string;
-  private _email: string;
+  private _data: {
+    name: string;
+    email: string;
+    hashedPassword: Hash;
+  };
 
   constructor({ name, email, password }: UserProps, id?: string) {
     super(id);
-    this._name = name;
-    this._email = email;
-    this.#hashedPassword = new Hash(password);
+
+    this._data = {
+      name,
+      email,
+      hashedPassword: new Hash(password),
+    };
   }
 
   comparePassword(password: string) {
-    return this.#hashedPassword.compare(password);
+    return this._data.hashedPassword.compare(password);
   }
 
   get name() {
-    return this._name;
+    return this._data.name;
   }
 
   get email() {
-    return this._email;
+    return this._data.email;
   }
 
   set name(value: string) {
-    this._name = value;
+    this._data.name = value;
   }
 
   set email(value: string) {
-    this._email = value;
+    this._data.email = value;
   }
 }
