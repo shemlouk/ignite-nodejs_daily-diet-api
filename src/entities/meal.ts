@@ -17,6 +17,16 @@ export class Meal extends Entity {
     this._data = data;
   }
 
+  toObject() {
+    return Object.freeze({
+      id: this.id,
+      name: this.name,
+      description: this.description,
+      timestamp: this.timestamp,
+      isOnDiet: this.isOnDiet,
+    });
+  }
+
   get userId() {
     return this._data.userId.value;
   }

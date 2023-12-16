@@ -13,6 +13,10 @@ export class InMemoryMealsRepository implements MealsRepository {
     return this.#meals.find((meal) => meal.id === mealId);
   }
 
+  async findManyByUserId(userId: string) {
+    return this.#meals.filter((meal) => meal.userId === userId);
+  }
+
   async update(meal: Meal) {
     const index = this.#meals.findIndex((m) => m.id === meal.id);
     if (index > -1) {
