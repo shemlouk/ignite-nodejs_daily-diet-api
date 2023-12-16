@@ -1,5 +1,5 @@
-import { InMemoryUsersRepository } from "repositories/in-memory/users";
-import { UsersRepository } from "repositories/users";
+import { InMemoryUsersRepository } from "@/repositories/in-memory/users";
+import { UsersRepository } from "@/repositories/users";
 import { ConflictError } from "./errors/conflict";
 import { RegisterUser } from "./register-user";
 

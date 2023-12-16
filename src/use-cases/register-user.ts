@@ -21,7 +21,7 @@ export class RegisterUser {
     password,
   }: RegisterUserInput): Promise<RegisterUserOutput> {
     const emailAlreadyInUse = await this.usersRepository.findByEmail(email);
-    if (emailAlreadyInUse) throw new ConflictError("email");
+    if (emailAlreadyInUse) throw new ConflictError("Email");
 
     const user = new User({ name, email, password });
     await this.usersRepository.create(user);
