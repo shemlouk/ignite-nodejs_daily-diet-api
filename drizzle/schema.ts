@@ -11,9 +11,11 @@ export const users = pgTable("users", {
 
 export const meals = pgTable("meals", {
   id: uuid("id").primaryKey().defaultRandom(),
-  userId: uuid("user_id").references(() => users.id),
   name: varchar("name", { length: 92 }).notNull(),
   description: text("description").notNull(),
   timestamp: timestamp("timestamp", { withTimezone: false }).notNull(),
   isOnDiet: boolean("is_on_diet").notNull(),
+  userId: uuid("user_id")
+    .references(() => users.id)
+    .notNull(),
 });

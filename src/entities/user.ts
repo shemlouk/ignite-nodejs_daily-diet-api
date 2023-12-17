@@ -28,6 +28,15 @@ export class User extends Entity {
     return this._data.hashedPassword.compare(password);
   }
 
+  toObject() {
+    return Object.freeze({
+      id: this.id,
+      name: this.name,
+      email: this.email,
+      hashedPassword: this._data.hashedPassword.value,
+    });
+  }
+
   get name() {
     return this._data.name;
   }

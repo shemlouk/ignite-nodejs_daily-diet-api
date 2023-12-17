@@ -18,4 +18,8 @@ export class Hash {
   compare(value: string) {
     return bcrypt.compareSync(value, this.#hash);
   }
+
+  get value() {
+    return this.#hash;
+  }
 }

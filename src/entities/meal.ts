@@ -20,6 +20,7 @@ export class Meal extends Entity {
   toObject() {
     return Object.freeze({
       id: this.id,
+      userId: this.userId,
       name: this.name,
       description: this.description,
       timestamp: this.timestamp,
