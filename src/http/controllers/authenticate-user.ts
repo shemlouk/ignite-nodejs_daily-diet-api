@@ -1,6 +1,6 @@
 import { UsersRepository } from "@/repositories/users";
 import { AuthenticateUser } from "@/use-cases/authenticate-user";
-import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
+import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 
 export class AuthenticateUserController {
@@ -15,16 +15,18 @@ export class AuthenticateUserController {
     this._authenticateUser = new AuthenticateUser(usersRepository);
   }
 
-  async execute(
-    request: FastifyRequest,
-    reply: FastifyReply,
-    app: FastifyInstance
-  ) {
+  async execute(request: FastifyRequest, reply: FastifyReply) {
     const data = AuthenticateUserController.bodySchema.parse(request.body);
 
     const { payload } = await this._authenticateUser.execute(data);
-    const token = app.jwt.sign({ payload });
+    const token = await reply.jwtSign(payload);
 
-    reply.send({ token });
+    reply
+      .setCookie("token", token, {
+        httpOnly: true,
+        path: "/",
+        maxAge: 60 * 60 * 24, // 1 day
+      })
+      .send();
   }
 }

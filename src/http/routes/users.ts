@@ -15,8 +15,5 @@ const authenticateUserController = new AuthenticateUserController(
 
 export async function usersRoute(app: FastifyInstance) {
   app.post("/register", (req, rep) => registerUserController.execute(req, rep));
-
-  app.post("/auth", (req, rep) =>
-    authenticateUserController.execute(req, rep, app)
-  );
+  app.post("/auth", (req, rep) => authenticateUserController.execute(req, rep));
 }

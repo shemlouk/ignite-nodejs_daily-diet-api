@@ -21,25 +21,27 @@ describe("Authenticate User Controller", () => {
     await db.insert(users).values(
       new User({
         name: "fulano",
-        email: "fulano@gmail.com",
+        email: "fulano@example.com",
         password: "fulano-password",
       }).toObject()
     );
 
     const response = await request(app.server).post("/users/auth").send({
-      email: "fulano@gmail.com",
+      email: "fulano@example.com",
       password: "fulano-password",
     });
 
     expect(response.statusCode).toEqual(200);
-    expect(response.body).toMatchObject({ token: expect.any(String) });
+    expect(response.headers["set-cookie"]).toEqual(
+      expect.arrayContaining([expect.any(String)])
+    );
   });
 
   it("should not authenticate user if password is incorrect", async () => {
     await db.insert(users).values(
       new User({
         name: "fulano",
-        email: "fulano@gmail.com",
+        email: "fulano@example.com",
         password: "fulano-password",
       }).toObject()
     );
@@ -47,7 +49,7 @@ describe("Authenticate User Controller", () => {
     await request(app.server)
       .post("/users/auth")
       .send({
-        email: "fulano@gmail.com",
+        email: "fulano@example.com",
         password: "wrong-password",
       })
       .expect(401);

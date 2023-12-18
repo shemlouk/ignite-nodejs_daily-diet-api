@@ -15,7 +15,9 @@ export class DrizzleUsersRepository implements UsersRepository {
 
   async findById(userId: string) {
     const [user] = await db.select().from(users).where(eq(users.id, userId));
-    return user && new User({ ...user, password: user.hashedPassword });
+    return (
+      user && new User({ ...user, password: user.hashedPassword }, user.id)
+    );
   }
 
   async findByEmail(email: string) {

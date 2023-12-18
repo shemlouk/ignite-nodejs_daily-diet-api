@@ -5,5 +5,10 @@ export default defineConfig({
   plugins: [tsconfigPaths()],
   test: {
     globals: true,
+    poolOptions: {
+      threads: {
+        singleThread: true,
+      },
+    },
   },
 });
