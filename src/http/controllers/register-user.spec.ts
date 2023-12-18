@@ -12,6 +12,10 @@ describe("Register User Controller", () => {
     await db.delete(users);
   });
 
+  afterAll(async () => {
+    await app.close();
+  });
+
   it("should create an user", async () => {
     await request(app.server)
       .post("/users/register")
