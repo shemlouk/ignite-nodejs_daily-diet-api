@@ -1,5 +1,5 @@
 {
-  "id": "2f6dff57-c681-4b83-8ca2-8163b8b12d1f",
+  "id": "f8b5a872-e644-4fb9-925b-517fc318d31e",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -14,12 +14,6 @@
           "primaryKey": true,
           "notNull": true,
           "default": "gen_random_uuid()"
-        },
-        "user_id": {
-          "name": "user_id",
-          "type": "uuid",
-          "primaryKey": false,
-          "notNull": false
         },
         "name": {
           "name": "name",
@@ -42,6 +36,12 @@
         "is_on_diet": {
           "name": "is_on_diet",
           "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
           "primaryKey": false,
           "notNull": true
         }

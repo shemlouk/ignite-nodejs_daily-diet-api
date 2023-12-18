@@ -1,8 +1,9 @@
+import { envs } from "@/lib/envs";
 import { app } from "./app";
 
 app
   .listen({
-    port: 3333,
+    port: envs.PORT,
   })
   .then(() => {
     console.log("Server started!");

@@ -5,15 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1702845889920,
-      "tag": "0000_aspiring_harpoon",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1702848221661,
-      "tag": "0001_jittery_proteus",
+      "when": 1702913574482,
+      "tag": "0000_common_energizer",
       "breakpoints": true
     }
   ]

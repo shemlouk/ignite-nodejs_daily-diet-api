@@ -1,10 +1,10 @@
 CREATE TABLE IF NOT EXISTS "meals" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
-	"user_id" uuid,
 	"name" varchar(92) NOT NULL,
 	"description" text NOT NULL,
 	"timestamp" timestamp NOT NULL,
-	"is_on_diet" boolean NOT NULL
+	"is_on_diet" boolean NOT NULL,
+	"user_id" uuid NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "users" (
