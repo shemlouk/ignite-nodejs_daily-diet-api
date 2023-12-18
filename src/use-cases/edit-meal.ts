@@ -31,7 +31,7 @@ export class EditMeal {
 
     for (const key in data) {
       const value = data[key as keyof typeof data] as never;
-      if (value) meal[key as Exclude<keyof Meal, "id" | "userId">] = value;
+      meal[key as Exclude<keyof Meal, "id" | "userId">] = value;
     }
 
     await this.mealsRepository.update(meal);

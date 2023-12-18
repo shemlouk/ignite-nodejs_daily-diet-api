@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { users } from "drizzle/schema";
+import { meals, users } from "drizzle/schema";
 import request from "supertest";
 import { app } from "../app";
 
@@ -9,6 +9,7 @@ describe("Register User Controller", () => {
   });
 
   beforeEach(async () => {
+    await db.delete(meals);
     await db.delete(users);
   });
 
