@@ -10,10 +10,8 @@ const envsSchema = z.object({
 
 const envs = envsSchema.parse(process.env);
 
-// const databaseSchema = envs.NODE_ENV === "prod" ? "public" : envs.NODE_ENV;
-// const databaseUrl = new URL(envs.DATABASE_URL);
-
-// databaseUrl.searchParams.set("search_path", databaseSchema);
-// envs.DATABASE_URL = databaseUrl.href;
+const databaseUrl = new URL(envs.DATABASE_URL);
+if (envs.NODE_ENV !== "prod") databaseUrl.pathname += "-" + envs.NODE_ENV;
+envs.DATABASE_URL = databaseUrl.href;
 
 export { envs };
